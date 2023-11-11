@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class Creating : AppCompatActivity() {
     private lateinit var get_foto: ImageView
-    public final var txty:String = ""
+    var txty:String = ""
     companion object{
         val IMAGE_REQUEST_CODE = 100
     }
@@ -31,7 +32,6 @@ class Creating : AppCompatActivity() {
         val edt_mail:EditText = findViewById(R.id.edt_mail)
         get_foto = findViewById(R.id.img_create_foto)
         val go:ImageView = findViewById(R.id.img_go)
-        val edt_Name = ""
         go.setOnClickListener{
             var name = edt_name.text.toString()
             var surname = edt_surname.text.toString()
@@ -40,7 +40,18 @@ class Creating : AppCompatActivity() {
             var obsh = edt_obsh.text.toString()
             var tel = edt_tel.text.toString()
             var mail = edt_mail.text.toString()
-            insertData(name, surname,prof,rab,obsh,tel,mail,txty)
+            insertData(name,surname,prof,rab,obsh,tel,mail,txty)
+//            Toast.makeText(applicationContext,txty,Toast.LENGTH_LONG).show()
+            val intent = Intent(this, Svodka::class.java)
+            intent.putExtra("name",name)
+            intent.putExtra("surname",surname)
+            intent.putExtra("prof",prof)
+            intent.putExtra("rab",rab)
+            intent.putExtra("obsh",obsh)
+            intent.putExtra("tel",tel)
+            intent.putExtra("mail",mail)
+            intent.putExtra("photo",txty)
+            startActivity(intent)
         }
         get_foto.setOnClickListener {
             pickImageGallary()
@@ -65,7 +76,7 @@ class Creating : AppCompatActivity() {
     private fun insertData(name:String,surname:String,prof:String,rab:String,obsh:String,tel:String ,mail:String,txti:String){
         lifecycleScope.launch{
             val client = getClient()
-            var abc = Speakers(Name = name, Surname = surname,Prof =prof , Comp=rab , Info=obsh , contact_tel=tel , contact_mail=mail, Foto = txti)
+            var abc = Speakers(Name=name, Surname=surname, Prof=prof, Comp=rab , Info=obsh , contact_tel=tel , contact_mail=mail, Foto=txti)
             client.postgrest["Speakers"].insert(value = abc)
         }
     }
@@ -74,9 +85,7 @@ class Creating : AppCompatActivity() {
 private fun getClient(): SupabaseClient {
     return createSupabaseClient(
         supabaseUrl = "https://lxvlzpeedcjccaugjrhx.supabase.co",
-        supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4dmx6cGVlZGNqY2NhdWdqcmh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg2Njg3MDcsImV4cCI6MjAxNDI0NDcwN30.XUVf8JimDWRWXul6W-s7iSPiJ52_KH50G-B6mHeURlE"
-    )
-
+        supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4dmx6cGVlZGNqY2NhdWdqcmh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg2Njg3MDcsImV4cCI6MjAxNDI0NDcwN30.XUVf8JimDWRWXul6W-s7iSPiJ52_KH50G-B6mHeURlE")
     {
         install(Postgrest)
     }
@@ -91,9 +100,8 @@ private fun getClient(): SupabaseClient {
         val Info: String = "",
         val contact_tel: String = "",
         val contact_mail: String = "",
-        val Foto: String = ""
-    ) {
+        val Foto:String = "") {
         override fun toString(): String {
-            return "${id}${Name}${Surname}${Prof}${Comp}${Info}${contact_tel}${contact_mail}${Foto}"
+            return "${id} ${Name} ${Surname} ${Prof} ${Comp} ${Info} ${contact_tel} ${contact_mail} ${Foto}"
         }
     }
