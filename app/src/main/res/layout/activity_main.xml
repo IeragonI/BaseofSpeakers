@@ -8,32 +8,6 @@
     android:background="@drawable/fon">
 
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="412dp"
-        android:layout_marginEnd="175dp"
-        android:background="@drawable/txt_pros"
-        android:elevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="275dp"
-        android:layout_marginEnd="175dp"
-        android:background="@drawable/txt_create"
-        android:elevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_autorize"
         android:layout_width="wrap_content"
@@ -41,7 +15,7 @@
         android:layout_marginStart="175dp"
         android:layout_marginTop="270dp"
         android:layout_marginEnd="175dp"
-        android:background="@drawable/but"
+        android:background="@drawable/btn_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +39,7 @@
         android:layout_marginStart="175dp"
         android:layout_marginTop="400dp"
         android:layout_marginEnd="175dp"
-        android:background="@drawable/but"
+        android:background="@drawable/btn_see"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
