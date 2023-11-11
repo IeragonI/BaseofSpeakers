@@ -1,6 +1,8 @@
 package com.example.baseofspeakers
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -55,13 +57,14 @@ class Creating : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             get_foto.setImageURI(data?.data)
+            get_foto.setBackgroundResource(R.drawable.nol)
         }
     }
 
     private fun insertData(name:String,surname:String,prof:String,rab:String,obsh:String,tel:String ,mail:String){
         lifecycleScope.launch{
             val client = getClient()
-            var abc = Speakers(Name = name, Surname = surname,Prof =prof , Comp=rab , Info=obsh , contact_tel=tel , contact_mail=mail)
+            var abc = Speakers(Name = name, Surname = surname,Prof = prof , Comp = rab , Info = obsh , contact_tel = tel , contact_mail = mail)
             client.postgrest["Speakers"].insert(value = abc)
         }
     }
