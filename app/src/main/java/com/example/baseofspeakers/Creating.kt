@@ -1,8 +1,5 @@
 package com.example.baseofspeakers
 
-import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -15,11 +12,6 @@ import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
 
 class Creating : AppCompatActivity() {
-
-    private lateinit var get_foto:ImageView
-    companion object {
-        val IMAGE_REQUEST_CODE = 100
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creating)
@@ -30,7 +22,7 @@ class Creating : AppCompatActivity() {
         val edt_obsh:EditText = findViewById(R.id.edt_obsh)
         val edt_tel:EditText = findViewById(R.id.edt_tel)
         val edt_mail:EditText = findViewById(R.id.edt_mail)
-        get_foto = findViewById(R.id.img_create_foto)
+        val get_foto:ImageView = findViewById(R.id.img_create_foto)
         val go:ImageView = findViewById(R.id.img_go)
         val edt_Name = ""
         go.setOnClickListener{
@@ -43,28 +35,12 @@ class Creating : AppCompatActivity() {
             var mail = edt_mail.text.toString()
             insertData(name, surname,prof,rab,obsh,tel,mail)
         }
-        get_foto.setOnClickListener {
-            pickImageGallary()
-        }
-    }
-    private fun pickImageGallary() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_REQUEST_CODE)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
-            get_foto.setImageURI(data?.data)
-            get_foto.setBackgroundResource(R.drawable.nol)
-        }
     }
 
     private fun insertData(name:String,surname:String,prof:String,rab:String,obsh:String,tel:String ,mail:String){
         lifecycleScope.launch{
             val client = getClient()
-            var abc = Speakers(Name = name, Surname = surname,Prof = prof , Comp = rab , Info = obsh , contact_tel = tel , contact_mail = mail)
+            var abc = Speakers(Name = name, Surname = surname,Prof =prof , Comp=rab , Info=obsh , contact_tel=tel , contact_mail=mail)
             client.postgrest["Speakers"].insert(value = abc)
         }
     }
