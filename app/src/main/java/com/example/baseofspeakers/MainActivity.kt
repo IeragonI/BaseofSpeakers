@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         }
         val btn_smotr:Button = findViewById(R.id.btn_demo)
         btn_smotr.setOnClickListener {
-
+            val intent1 = Intent(this, Find::class.java)
+            startActivity(intent1)
         }
     }
 }

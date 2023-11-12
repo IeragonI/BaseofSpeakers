@@ -15,6 +15,12 @@
         android:theme="@style/Theme.BaseOfSpeakers"
         tools:targetApi="31">
         <activity
+            android:name=".Find"
+            android:exported="false" />
+        <activity
+            android:name=".Create_svod"
+            android:exported="false" />
+        <activity
             android:name=".Svodka"
             android:exported="false" />
         <activity
