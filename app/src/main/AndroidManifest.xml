@@ -21,6 +21,9 @@
             android:name=".Create_svod"
             android:exported="false" />
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Svodka"
             android:exported="false" />
         <activity
