@@ -1,5 +1,6 @@
 package com.example.baseofspeakers
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +20,17 @@ class Svodka : AppCompatActivity() {
         val txt_obsh:TextView = findViewById(R.id.txt_obsh)
         val txt_tel:TextView = findViewById(R.id.txt_tel)
         val txt_mail:TextView = findViewById(R.id.txt_mail)
+        val txt_back:TextView = findViewById(R.id.txt_back)
+        val img_glav_menu:ImageView = findViewById(R.id.img_glav_ecr)
         set_foto = findViewById(R.id.img_prof)
+        val intent = Intent(this, MainActivity::class.java)
+
+        txt_back.setOnClickListener {
+            startActivity(intent)
+        }
+        img_glav_menu.setOnClickListener {
+            startActivity(intent)
+        }
 
         var name:String = intent.getStringExtra("name").toString()
         var surname:String = intent.getStringExtra("surname").toString()
